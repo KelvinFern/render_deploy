@@ -2,7 +2,7 @@ import requests
 import psycopg2
 
 def conectarDB():
-    return conectar_localBD()
+    return conectar_cloudBD()
 
 def conectar_localBD():
     con = psycopg2.connect(
