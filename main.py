@@ -27,7 +27,7 @@ def cadastrar_usuario():
         return render_template('home.html', msg='Usuário já existe')
 
 
-@app.route('/verificarlogin', methods=['POST'])
+@app.route('/verificarlogin', methods=['POST', 'GET'])
 def verificar_login():
     user = request.form.get('emailusuario')
     senha = request.form.get('senhausuario')
@@ -67,6 +67,13 @@ def inserircontato():
         #criar pagina de erro de contato
         return render_template('contato.html', msg='cep invalido')
 
+@app.route('/opiniaousuario', methods=['POST','GET'])
+def feedback():
+
+    if request.method == 'POST':
+        return "Processando feedback..."
+    else:
+        return render_template('feedback.html')
 
 if __name__ == '__main__':
     app.run(debug=True) #executa/roda/starta o servidor
