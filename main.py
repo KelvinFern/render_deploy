@@ -71,9 +71,12 @@ def inserircontato():
 def feedback():
 
     if request.method == 'POST':
-        return "Processando feedback..."
+        feedback = request.form.get('feedback')
     else:
         return render_template('feedback.html')
+
+    if dao.inserir_feedback(feedback):
+        return render_template('logado.html')
 
 if __name__ == '__main__':
     app.run(debug=True) #executa/roda/starta o servidor

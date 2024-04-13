@@ -108,3 +108,21 @@ def registrar_contato(nome, email, comentario, cep, email_login):
 
     conexao.close()
     return exito
+
+def inserir_feedback(recebido):
+    conexao = conectarDB()
+    cur = conexao.cursor()
+    try:
+        sql = (f"INSERT INTO feedback (recebido) VALUES ('{recebido}')")
+        cur.execute(sql)
+    except psycopg2.IntegrityError:
+        conexao.rollback()
+        exito = False
+    else:
+        conexao.commit()
+        exito = True
+
+    conexao.close()
+    return exito
+
+
